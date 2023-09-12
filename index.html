@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+            text-align: center;
+        }
+
+        .header-bar {
+            background-color: #0077b6;
+            color: #000000;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .header-bar img {
+            width: 150px;
+            height: auto;
+        }
+
+        h1 {
+            background-color: #0077b6;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+
+        #search-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #license {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ffffff;
+        }
+
+        #results {
+            text-align: left;
+            margin-top: 20px;
+            display: none;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #005b8e; /* Cor alterada no hover */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+
+        button:hover {
+            background-color: #0077b6; /* Cor alterada no hover */
+        }
+
+        h2 {
+            color: #0077b6;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">
+        <img src="C:\Users\luann\Downloads\OIG.png" alt="Imagem de cabeçalho" width="200">
+
+    <h1>Consulta de Licenças e Prazos</h1>
+        <div id="search-container">
+
+            <label for="license">Selecione a licença: </label>
+            <select id="license">
+            <option value=>Selecione sua licença
+            <option value="Licença prévia (LP)">Licença prévia (LP)</option>
+            <option value="Licença de instalação (LI)">Licença de instalação (LI)</option>
+            <option value="Licença de operação (LO)">Licença de operação (LO)</option>
+            <option value="Licença de alteração (LA)">Licença de alteração (LA)</option>
+            <option value="Autorização ambiental (AA)">Autorização ambiental (AA)</option>
+            <option value="Autorização para supressão vegetal">Autorização para supressão vegetal</option>
+            <option value="Autorização para uso do fogo controlado">Autorização para uso do fogo controlado</option>
+            <option value="Autorização para transporte de matéria-prima de origem florestal">Autorização para transporte de matéria-prima de origem florestal</option>
+            <option value="Cadastro e registro dos consumidores de matéria-prima de origem florestal">Cadastro e registro dos consumidores de matéria-prima de origem florestal</option>
+            <option value="Cadastro de produtos agrotóxicos comercializados no Estado">Cadastro de produtos agrotóxicos comercializados no Estado</option>
+            <option value="Registro do estabelecimento comercializador ou utilizador de agrotóxico">Registro do estabelecimento comercializador ou utilizador de agrotóxico</option>
+            <!-- Adicione as licenças adicionais aqui -->
+            <option value="Licença para abertura de empresa">Licença para abertura de empresa</option>
+            <option value="Licença para funcionamento de empresa">Licença para funcionamento de empresa</option>
+            <option value="Licença para construção civil">Licença para construção civil</option>
+            <option value="Licença para importação">Licença para importação</option>
+            <option value="Licença para exportação">Licença para exportação</option>
+            <option value="Licença para transporte de carga">Licença para transporte de carga</option>
+            <option value="Licença para transporte de passageiros">Licença para transporte de passageiros</option>
+            <option value="Licença para exploração de recursos naturais">Licença para exploração de recursos naturais</option>
+            <option value="Licença para uso de software">Licença para uso de software</option>
+            <option value="Licença para uso de marca registrada">Licença para uso de marca registrada</option>
+            <option value="Licença para uso de patente">Licença para uso de patente</option>
+            <option value="Licença para uso de direito autoral">Licença para uso de direito autoral</option>
+            <option value="Licença para uso de propriedade intelectual">Licença para uso de propriedade intelectual</option>
+            <option value="Licença para funcionamento de restaurante">Licença para funcionamento de restaurante</option>
+            <option value="Licença para funcionamento de bar">Licença para funcionamento de bar</option>
+            <option value="Licença para funcionamento de hotel">Licença para funcionamento de hotel</option>
+            <option value="Licença para funcionamento de comércio">Licença para funcionamento de comércio</option>
+            <option value="Licença para funcionamento de indústria">Licença para funcionamento de indústria</option>
+            <option value="Licença para funcionamento de serviço">Licença para funcionamento de serviço</option>
+            <option value="Licença para funcionamento de agronegócio">Licença para funcionamento de agronegócio</option>
+            <option value="Licença para funcionamento de mineração">Licença para funcionamento de mineração</option>
+            <option value="Licença para funcionamento de construção civil">Licença para funcionamento de construção civil</option>
+            <option value="Licença para funcionamento de transporte">Licença para funcionamento de transporte</option>
+            <option value="Licença para funcionamento de saúde">Licença para funcionamento de saúde</option>
+            <option value="Licença para funcionamento de educação">Licença para funcionamento de educação</option>
+            <option value="Licença para funcionamento de segurança">Licença para funcionamento de segurança</option>
+        </select>
+    <button onclick="searchLicense()">Consultar</button>
+    </div>
+
+    <div id="results">
+        <h2>Prazo de Validade:</h2>
+        <p id="validity"></p>
+        <h2>Prazo para Renovação:</h2>
+        <p id="renewal"></p>
+        <h2>Prazo para Análise pela SEMACE:</h2>
+        <p id="analysis"></p>
+    </div>
+    <div>
+        <footer class="footer">
+            <div class="container">
+        <p>Calculadora das principais licensas brasileiras &copy; 2023 | Desenvolvida por Luann Pereira Mendes</p>
+    </footer>
+    </div>
+    <script>
+        const licenseData = {
+            "Licença prévia (LP)": {
+                validity: "Um ano",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença de instalação (LI)": {
+                validity: "Dois anos",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença de operação (LO)": {
+                validity: "De um a três anos, de acordo com o potencial poluidor-degradador",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença de alteração (LA)": {
+                validity: "Não há prazo definido",
+                renewal: "Não há prazo definido",
+                analysis: "Não há prazo definido",
+            },
+            "Autorização ambiental (AA)": {
+                validity: "Um ano",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Autorização para supressão vegetal": {
+                validity: "Um ano",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Autorização para uso do fogo controlado": {
+                validity: "Um ano",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Autorização para transporte de matéria-prima de origem florestal": {
+                validity: "48 horas",
+                renewal: "Não há prazo definido",
+                analysis: "No mínimo 60 dias e no máximo 12 meses",
+            },
+            "Cadastro e registro dos consumidores de matéria-prima de origem florestal": {
+                validity: "Um ano",
+                renewal: "Não há prazo definido",
+                analysis: "No mínimo 60 dias e no máximo 12 meses",
+            },
+            "Cadastro de produtos agrotóxicos comercializados no Estado": {
+                validity: "Cinco anos",
+                renewal: "Não há prazo definido",
+                analysis: "No mínimo 60 dias e no máximo 12 meses",
+            },
+            "Registro do estabelecimento comercializador ou utilizador de agrotóxico": {
+                validity: "Um ano",
+                renewal: "Não há prazo definido",
+                analysis: "No mínimo 60 dias e no máximo 12 meses",
+            },
+            // Adicione as licenças adicionais aqui com os prazos correspondentes
+            "Licença para abertura de empresa": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de empresa": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para construção civil": {
+                validity: "30 a 60 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para importação": {
+                validity: "30 a 60 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para exportação": {
+                validity: "30 a 60 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para transporte de carga": {
+                validity: "30 a 60 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para transporte de passageiros": {
+                validity: "30 a 60 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para exploração de recursos naturais": {
+                validity: "60 a 90 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para uso de software": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para uso de marca registrada": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para uso de patente": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para uso de direito autoral": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para uso de propriedade intelectual": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de restaurante": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de bar": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de hotel": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de comércio": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de indústria": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de serviço": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de agronegócio": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de mineração": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de construção civil": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de transporte": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de saúde": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de educação": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+            "Licença para funcionamento de segurança": {
+                validity: "15 a 30 dias",
+                renewal: "120 dias antes da data de validade",
+                analysis: "No mínimo 60 dias e no máximo 6 meses",
+            },
+        }
+        function searchLicense() {
+            const licenseInput = document.getElementById("license").value;
+            const resultsContainer = document.getElementById("results");
+            const validityParagraph = document.getElementById("validity");
+            const renewalParagraph = document.getElementById("renewal");
+            const analysisParagraph = document.getElementById("analysis");
+
+            if (licenseData.hasOwnProperty(licenseInput)) {
+                const licenseInfo = licenseData[licenseInput];
+                validityParagraph.textContent = `Prazo de Validade: ${licenseInfo.validity}`;
+                renewalParagraph.textContent = `Prazo para Renovação: ${licenseInfo.renewal}`;
+                analysisParagraph.textContent = `Prazo para Análise pela SEMACE: ${licenseInfo.analysis}`;
+                resultsContainer.style.display = "block";
+            } else {
+                validityParagraph.textContent = "Licença não encontrada.";
+                renewalParagraph.textContent = "";
+                analysisParagraph.textContent = "";
+                resultsContainer.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
