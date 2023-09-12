@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Licenças e Prazos</title>
     <style>
+        /* Estilos gerais */
         body {
             font-family: Arial, sans-serif;
             font-size: 16px;
@@ -12,24 +16,32 @@
             text-align: center;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Estilos do cabeçalho */
         .header-bar {
             background-color: #0077b6;
-            color: #000000;
+            color: #fff;
             padding: 15px 0;
-            text-align: center;
         }
 
         .header-bar img {
-            width: 150px;
+            width: 100px;
             height: auto;
         }
 
         h1 {
             background-color: #0077b6;
-            color: #ffffff;
+            color: #fff;
             padding: 20px 0;
         }
 
+        /* Estilos do formulário */
         #search-container {
             text-align: center;
             margin-top: 20px;
@@ -39,31 +51,33 @@
             width: 300px;
             padding: 10px;
             font-size: 16px;
-            border: 1px solid #ffffff;
-        }
-
-        #results {
-            text-align: left;
-            margin-top: 20px;
-            display: none;
-            padding: 20px;
-            background-color: #ffffff;
+            border: 1px solid #0077b6;
             border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
         button {
-            background-color: #005b8e; /* Cor alterada no hover */
+            background-color: #0077b6;
             color: #fff;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            border-radius: 5px; /* Bordas arredondadas */
+            border-radius: 5px;
         }
 
         button:hover {
-            background-color: #0077b6; /* Cor alterada no hover */
+            background-color: #005b8e;
+        }
+
+        /* Estilos dos resultados */
+        #results {
+            text-align: left;
+            margin-top: 20px;
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
@@ -74,80 +88,82 @@
             font-size: 18px;
         }
 
+        /* Rodapé */
         footer {
             background-color: #333;
-            color: #ffffff;
+            color: #fff;
             padding: 10px 0;
-            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .copyright {
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
+
     <div class="header-bar">
         <img src="https://github.com/Luann8/Calculadora-Principais-licencas/blob/main/OIG.png?raw=true" alt="Imagem de cabeçalho" width="200">
-
-    <h1>Consulta de Licenças e Prazos</h1>
-        <div id="search-container">
-
-            <select id="license">
-            <option value=>Selecione sua licença
-            <option value="Licença prévia (LP)">Licença prévia (LP)</option>
-            <option value="Licença de instalação (LI)">Licença de instalação (LI)</option>
-            <option value="Licença de operação (LO)">Licença de operação (LO)</option>
-            <option value="Licença de alteração (LA)">Licença de alteração (LA)</option>
-            <option value="Autorização ambiental (AA)">Autorização ambiental (AA)</option>
-            <option value="Autorização para supressão vegetal">Autorização para supressão vegetal</option>
-            <option value="Autorização para uso do fogo controlado">Autorização para uso do fogo controlado</option>
-            <option value="Autorização para transporte de matéria-prima de origem florestal">Autorização para transporte de matéria-prima de origem florestal</option>
-            <option value="Cadastro e registro dos consumidores de matéria-prima de origem florestal">Cadastro e registro dos consumidores de matéria-prima de origem florestal</option>
-            <option value="Cadastro de produtos agrotóxicos comercializados no Estado">Cadastro de produtos agrotóxicos comercializados no Estado</option>
-            <option value="Registro do estabelecimento comercializador ou utilizador de agrotóxico">Registro do estabelecimento comercializador ou utilizador de agrotóxico</option>
-            <!-- Adicione as licenças adicionais aqui -->
-            <option value="Licença para abertura de empresa">Licença para abertura de empresa</option>
-            <option value="Licença para funcionamento de empresa">Licença para funcionamento de empresa</option>
-            <option value="Licença para construção civil">Licença para construção civil</option>
-            <option value="Licença para importação">Licença para importação</option>
-            <option value="Licença para exportação">Licença para exportação</option>
-            <option value="Licença para transporte de carga">Licença para transporte de carga</option>
-            <option value="Licença para transporte de passageiros">Licença para transporte de passageiros</option>
-            <option value="Licença para exploração de recursos naturais">Licença para exploração de recursos naturais</option>
-            <option value="Licença para uso de software">Licença para uso de software</option>
-            <option value="Licença para uso de marca registrada">Licença para uso de marca registrada</option>
-            <option value="Licença para uso de patente">Licença para uso de patente</option>
-            <option value="Licença para uso de direito autoral">Licença para uso de direito autoral</option>
-            <option value="Licença para uso de propriedade intelectual">Licença para uso de propriedade intelectual</option>
-            <option value="Licença para funcionamento de restaurante">Licença para funcionamento de restaurante</option>
-            <option value="Licença para funcionamento de bar">Licença para funcionamento de bar</option>
-            <option value="Licença para funcionamento de hotel">Licença para funcionamento de hotel</option>
-            <option value="Licença para funcionamento de comércio">Licença para funcionamento de comércio</option>
-            <option value="Licença para funcionamento de indústria">Licença para funcionamento de indústria</option>
-            <option value="Licença para funcionamento de serviço">Licença para funcionamento de serviço</option>
-            <option value="Licença para funcionamento de agronegócio">Licença para funcionamento de agronegócio</option>
-            <option value="Licença para funcionamento de mineração">Licença para funcionamento de mineração</option>
-            <option value="Licença para funcionamento de construção civil">Licença para funcionamento de construção civil</option>
-            <option value="Licença para funcionamento de transporte">Licença para funcionamento de transporte</option>
-            <option value="Licença para funcionamento de saúde">Licença para funcionamento de saúde</option>
-            <option value="Licença para funcionamento de educação">Licença para funcionamento de educação</option>
-            <option value="Licença para funcionamento de segurança">Licença para funcionamento de segurança</option>
-        </select>
-    <button onclick="searchLicense()">Consultar</button>
+        <h1>Consulta de Licenças e Prazos</h1>
+        <p1>Calculadora das principais licenças brasileiras © 2023 | Desenvolvida por Luann Pereira Mendes</p1>
+    </div>    
+        <p>
+        <select id="license">
+                <option value="">Selecione sua licença</option>
+                <option value="Licença prévia (LP)">Licença prévia (LP)</option>
+                <option value="Licença de instalação (LI)">Licença de instalação (LI)</option>
+                <option value="Licença de operação (LO)">Licença de operação (LO)</option>
+                <option value="Licença de alteração (LA)">Licença de alteração (LA)</option>
+                <option value="Autorização ambiental (AA)">Autorização ambiental (AA)</option>
+                <option value="Autorização para supressão vegetal">Autorização para supressão vegetal</option>
+                <option value="Autorização para uso do fogo controlado">Autorização para uso do fogo controlado</option>
+                <option value="Autorização para transporte de matéria-prima de origem florestal">Autorização para transporte de matéria-prima de origem florestal</option>
+                <option value="Cadastro e registro dos consumidores de matéria-prima de origem florestal">Cadastro e registro dos consumidores de matéria-prima de origem florestal</option>
+                <option value="Cadastro de produtos agrotóxicos comercializados no Estado">Cadastro de produtos agrotóxicos comercializados no Estado</option>
+                <option value="Registro do estabelecimento comercializador ou utilizador de agrotóxico">Registro do estabelecimento comercializador ou utilizador de agrotóxico</option>
+                <option value="Licença para abertura de empresa">Licença para abertura de empresa</option>
+                <option value="Licença para funcionamento de empresa">Licença para funcionamento de empresa</option>
+                <option value="Licença para construção civil">Licença para construção civil</option>
+                <option value="Licença para importação">Licença para importação</option>
+                <option value="Licença para exportação">Licença para exportação</option>
+                <option value="Licença para transporte de carga">Licença para transporte de carga</option>
+                <option value="Licença para transporte de passageiros">Licença para transporte de passageiros</option>
+                <option value="Licença para exploração de recursos naturais">Licença para exploração de recursos naturais</option>
+                <option value="Licença para uso de software">Licença para uso de software</option>
+                <option value="Licença para uso de marca registrada">Licença para uso de marca registrada</option>
+                <option value="Licença para uso de patente">Licença para uso de patente</option>
+                <option value="Licença para uso de direito autoral">Licença para uso de direito autoral</option>
+                <option value="Licença para uso de propriedade intelectual">Licença para uso de propriedade intelectual</option>
+                <option value="Licença para funcionamento de restaurante">Licença para funcionamento de restaurante</option>
+                <option value="Licença para funcionamento de bar">Licença para funcionamento de bar</option>
+                <option value="Licença para funcionamento de hotel">Licença para funcionamento de hotel</option>
+                <option value="Licença para funcionamento de comércio">Licença para funcionamento de comércio</option>
+                <option value="Licença para funcionamento de indústria">Licença para funcionamento de indústria</option>
+                <option value="Licença para funcionamento de serviço">Licença para funcionamento de serviço</option>
+                <option value="Licença para funcionamento de agronegócio">Licença para funcionamento de agronegócio</option>
+                <option value="Licença para funcionamento de mineração">Licença para funcionamento de mineração</option>
+                <option value="Licença para funcionamento de construção civil">Licença para funcionamento de construção civil</option>
+                <option value="Licença para funcionamento de transporte">Licença para funcionamento de transporte</option>
+                <option value="Licença para funcionamento de saúde">Licença para funcionamento de saúde</option>
+                <option value="Licença para funcionamento de educação">Licença para funcionamento de educação</option>
+                <option value="Licença para funcionamento de segurança">Licença para funcionamento de segurança</option>
+            </select>
+            <button onclick="searchLicense()">Consultar</button>
+        </div>
+        <div id="results">
+            <h2>Prazo de Validade:</h2>
+            <p id="validity"></p>
+            <h2>Prazo para Renovação:</h2>
+            <p id="renewal"></p>
+            <h2>Prazo para Análise pela SEMACE:</h2>
+            <p id="analysis"></p>
+        </div>
+            
     </div>
-
-    <div id="results">
-        <h2>Prazo de Validade:</h2>
-        <p id="validity"></p>
-        <h2>Prazo para Renovação:</h2>
-        <p id="renewal"></p>
-        <h2>Prazo para Análise pela SEMACE:</h2>
-        <p id="analysis"></p>
-    </div>
-    <div>
-        <footer class="footer">
-            <div class="container">
-        <p>Calculadora das principais licensas brasileiras &copy; 2023 | Desenvolvida por Luann Pereira Mendes</p>
-    </footer>
-    </div>
-    <script>
+        <script>
         const licenseData = {
             "Licença prévia (LP)": {
                 validity: "Um ano",
@@ -204,7 +220,6 @@
                 renewal: "Não há prazo definido",
                 analysis: "No mínimo 60 dias e no máximo 12 meses",
             },
-            // Adicione as licenças adicionais aqui com os prazos correspondentes
             "Licença para abertura de empresa": {
                 validity: "15 a 30 dias",
                 renewal: "120 dias antes da data de validade",
@@ -335,27 +350,36 @@
                 renewal: "120 dias antes da data de validade",
                 analysis: "No mínimo 60 dias e no máximo 6 meses",
             },
-        }
+        };
         function searchLicense() {
             const licenseInput = document.getElementById("license").value;
             const resultsContainer = document.getElementById("results");
             const validityParagraph = document.getElementById("validity");
             const renewalParagraph = document.getElementById("renewal");
             const analysisParagraph = document.getElementById("analysis");
+            const noLicenseMsg = document.getElementById("no-license-msg");
 
-            if (licenseData.hasOwnProperty(licenseInput)) {
-                const licenseInfo = licenseData[licenseInput];
-                validityParagraph.textContent = `Prazo de Validade: ${licenseInfo.validity}`;
-                renewalParagraph.textContent = `Prazo para Renovação: ${licenseInfo.renewal}`;
-                analysisParagraph.textContent = `Prazo para Análise pela SEMACE: ${licenseInfo.analysis}`;
-                resultsContainer.style.display = "block";
+            if (licenseInput) {
+                if (licenseData.hasOwnProperty(licenseInput)) {
+                    const licenseInfo = licenseData[licenseInput];
+                    validityParagraph.textContent = `Prazo de Validade: ${licenseInfo.validity}`;
+                    renewalParagraph.textContent = `Prazo para Renovação: ${licenseInfo.renewal}`;
+                    analysisParagraph.textContent = `Prazo para Análise pela SEMACE: ${licenseInfo.analysis}`;
+                    resultsContainer.style.display = "block";
+                    noLicenseMsg.style.display = "none";
+                } else {
+                    validityParagraph.textContent = "Licença não encontrada.";
+                    renewalParagraph.textContent = "";
+                    analysisParagraph.textContent = "";
+                    resultsContainer.style.display = "block";
+                    noLicenseMsg.style.display = "none";
+                }
             } else {
-                validityParagraph.textContent = "Licença não encontrada.";
-                renewalParagraph.textContent = "";
-                analysisParagraph.textContent = "";
-                resultsContainer.style.display = "block";
+                resultsContainer.style.display = "none";
+                noLicenseMsg.style.display = "block";
             }
         }
     </script>
+</div>
 </body>
 </html>
